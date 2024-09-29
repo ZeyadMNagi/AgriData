@@ -1,67 +1,52 @@
-const OPENWEATHER_API_KEY = "f2ed49840497b3c7ee0070d59441efe4";
-const GEONAMES_USERNAME = "zeyad_m_nagi";
-
-async function fetchCitySuggestions(query) {
-  if (query.length < 3) {
-    document.getElementById("suggestions").innerHTML = ""; // Clear suggestions
-    return;
-  }
-
-  const response = await fetch(
-    `http://api.geonames.org/searchJSON?q=${query}&maxRows=5&username=${GEONAMES_USERNAME}`
-  );
-  const data = await response.json();
-
-  // Display city suggestions
-  const suggestions = document.getElementById("suggestions");
-  suggestions.innerHTML = "";
-  data.geonames.forEach((city) => {
-    const listItem = document.createElement("li");
-    listItem.innerText = `${city.name}, ${city.countryName}`;
-    listItem.onclick = () => selectCity(city.name, city.lat, city.lng);
-    suggestions.appendChild(listItem);
-  });
-}
-
+// Select city and fetch weather data
 function selectCity(name, lat, lon) {
   document.getElementById("city-input").value = name;
   document.getElementById("latitude").value = lat;
   document.getElementById("longitude").value = lon;
   document.getElementById("suggestions").innerHTML = ""; // Clear suggestions
+
+  // Fetch weather data from backend
+  fetchWeatherData(lat, lon, name);
 }
 
-async function fetchWeatherData() {
-  const lat = document.getElementById("latitude").value;
-  const lon = document.getElementById("longitude").value;
+// Fetch weather data from the backend
+async function fetchWeatherData(lat, lon, city = "") {
+  try {
+    const response = await fetch("/weather", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        lat: lat,
+        lon: lon,
+        city: city,
+      }),
+    });
 
-  if (!lat || !lon) {
-    alert("Please select a city or enter coordinates!");
-    return;
+    const data = await response.json();
+    displayWeatherData(data);
+  } catch (error) {
+    alert("Failed to fetch weather data");
   }
-
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}&units=metric`
-  );
-  const weatherData = await response.json();
-
-  displayWeatherData(weatherData);
-
-  console.log(weatherData);
 }
 
+// Display weather data
 function displayWeatherData(data) {
   const weatherResult = document.getElementById("weather-result");
   weatherResult.innerHTML = `
-        <h3>Weather in ${data.name}</h3>
-        <p>Temperature: ${data.main.temp}°C</p>
-        <p>Humidity: ${data.main.humidity}%</p>
-        <p>Condition: ${data.weather[0].description}</p>
-    `;
-
-    console.log(data);
-    console.log("done shown ");
+          <h3>Weather in ${data.location.city}</h3>
+          <p>Temperature: ${data.currentWeather.temp}°C</p>
+          <p>Humidity: ${data.currentWeather.humidity}%</p>
+          <p>Rainfall: ${data.currentWeather.rainfall} mm</p>
+          <h4>Detected Conditions</h4>
+          <p>Flood: ${data.conditions.flood ? "Yes" : "No"}</p>
+          <p>Drought: ${data.conditions.drought ? "Yes" : "No"}</p>
+          <p>Heatwave: ${data.conditions.heatwave ? "Yes" : "No"}</p>
+      `;
 }
 
+// Handle geolocation request
 document
   .getElementById("getLocationBtn")
   .addEventListener("click", function () {
@@ -72,6 +57,7 @@ document
     }
   });
 
+// When geolocation succeeds
 function showPosition(position) {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
@@ -79,12 +65,14 @@ function showPosition(position) {
     "locationDisplay"
   ).innerText = `Latitude: ${lat}, Longitude: ${lon}`;
 
-  fetchCityData(lat, lon);
-  fetchCitySuggestions(lat, lon);
+  document.getElementById("latitude").value = lat;
+  document.getElementById("longitude").value = lon;
 
-  console.log("DONE");
+  // Fetch weather data using geolocation
+  fetchWeatherData(lat, lon);
 }
 
+// Geolocation error handler
 function showError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
@@ -100,12 +88,4 @@ function showError(error) {
       alert("An unknown error occurred.");
       break;
   }
-}
-
-async function fetchCityData(lat, lon) {
-  const response = await fetch(
-    `http://api.geonames.org/findNearbyPlaceNameJSON?lat=${lat}&lng=${lon}&username=zeyad_m_nagi`
-  );
-  const data = await response.json();
-  console.log(data);
 }

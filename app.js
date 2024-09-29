@@ -4,6 +4,8 @@ require("dotenv").config();
 
 const app = express();
 app.use(express.static("public"));
+app.use(express.json());
+
 const PORT = process.env.PORT || 3000;
 
 function checkWeatherConditions(weatherData) {
@@ -33,11 +35,11 @@ function checkWeatherConditions(weatherData) {
   return conditions;
 }
 
-app.get("/weather", async (req, res) => {
-  const { lat, lon } = req.query;
+app.post("/weather", async (req, res) => {
+  const { lat, lon, city } = req.body;
 
   if (!lat || !lon) {
-    return res.status(400).send("Please provide latitude and longitude");
+    return res.status(400).send("Please provide latitude and longitude.");
   }
 
   try {
@@ -58,7 +60,7 @@ app.get("/weather", async (req, res) => {
     const temp = weatherData.main.temp;
     const humidity = weatherData.main.humidity;
     const rainfall = weatherData.rain ? weatherData.rain["1h"] || 0 : 0;
-    const soilMoisture = 75;
+    const soilMoisture = 75; // Assuming static soil moisture for now
 
     const conditions = checkWeatherConditions({
       temp,
@@ -69,6 +71,7 @@ app.get("/weather", async (req, res) => {
 
     res.json({
       location: {
+        city: weatherData.name || city,
         lat,
         lon,
       },
