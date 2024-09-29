@@ -1,15 +1,12 @@
-// Select city and fetch weather data
 function selectCity(name, lat, lon) {
   document.getElementById("city-input").value = name;
   document.getElementById("latitude").value = lat;
   document.getElementById("longitude").value = lon;
   document.getElementById("suggestions").innerHTML = ""; // Clear suggestions
 
-  // Fetch weather data from backend
   fetchWeatherData(lat, lon, name);
 }
 
-// Fetch weather data from the backend
 async function fetchWeatherData(lat, lon, city = "") {
   try {
     const response = await fetch("/weather", {
@@ -46,7 +43,6 @@ function displayWeatherData(data) {
       `;
 }
 
-// Handle geolocation request
 document
   .getElementById("getLocationBtn")
   .addEventListener("click", function () {
@@ -57,7 +53,6 @@ document
     }
   });
 
-// When geolocation succeeds
 function showPosition(position) {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
@@ -68,11 +63,9 @@ function showPosition(position) {
   document.getElementById("latitude").value = lat;
   document.getElementById("longitude").value = lon;
 
-  // Fetch weather data using geolocation
   fetchWeatherData(lat, lon);
 }
 
-// Geolocation error handler
 function showError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
