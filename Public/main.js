@@ -1,3 +1,5 @@
+const GEONAMES_USERNAME = "zeyad_m_nagi";
+
 function selectCity(name, lat, lon) {
   document.getElementById("city-input").value = name;
   document.getElementById("latitude").value = lat;
@@ -5,6 +7,28 @@ function selectCity(name, lat, lon) {
   document.getElementById("suggestions").innerHTML = ""; // Clear suggestions
 
   fetchWeatherData(lat, lon, name);
+}
+
+async function fetchCitySuggestions(query) {
+  if (query.length < 3) {
+    document.getElementById("suggestions").innerHTML = ""; // Clear suggestions
+    return;
+  }
+
+  const response = await fetch(
+    `http://api.geonames.org/searchJSON?q=${query}&maxRows=5&username=${GEONAMES_USERNAME}`
+  );
+  const data = await response.json();
+
+  // Display city suggestions
+  const suggestions = document.getElementById("suggestions");
+  suggestions.innerHTML = "";
+  data.geonames.forEach((city) => {
+    const listItem = document.createElement("li");
+    listItem.innerText = `${city.name}, ${city.countryName}`;
+    listItem.onclick = () => selectCity(city.name, city.lat, city.lng);
+    suggestions.appendChild(listItem);
+  });
 }
 
 async function fetchWeatherData(lat, lon, city = "") {
@@ -41,6 +65,8 @@ function displayWeatherData(data) {
           <p>Drought: ${data.conditions.drought ? "Yes" : "No"}</p>
           <p>Heatwave: ${data.conditions.heatwave ? "Yes" : "No"}</p>
       `;
+
+  console.log(data);
 }
 
 document
@@ -64,6 +90,8 @@ function showPosition(position) {
   document.getElementById("longitude").value = lon;
 
   fetchWeatherData(lat, lon);
+
+  console.log(position);
 }
 
 function showError(error) {
