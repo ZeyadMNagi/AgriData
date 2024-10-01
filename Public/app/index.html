@@ -70,10 +70,18 @@
       <input type="hidden" id="longitude" />
 
       <section id="weather-result">
-        <div class="today"></div>
+        Today's Weather:
+        <div id="today"></div>
+        Over week Weather:
+        <div id="week"></div>
+        <h3>Forecast (5 Days)</h3>
+        <canvas id="tempChart" width="400" height="200"></canvas>
+        <canvas id="humidityChart" width="400" height="200"></canvas>
+        <canvas id="rainfallChart" width="400" height="200"></canvas>
       </section>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="main.js"></script>
   </body>
 </html>

@@ -55,14 +55,27 @@ app.post("/weather", async (req, res) => {
       }
     );
 
+    // Fetch the 5-day forecast
+    const forecastResponse = await axios.get(
+      "https://api.openweathermap.org/data/2.5/forecast",
+      {
+        params: {
+          lat: lat,
+          lon: lon,
+          appid: process.env.API_KEY,
+          units: "metric",
+        },
+      }
+    );
+
     const weatherData = weatherResponse.data;
-    console.log(weatherData);
+    const forecastData = forecastResponse.data;
 
     const temp = weatherData.main.temp;
     const humidity = weatherData.main.humidity;
     const rainfall = weatherData.rain ? weatherData.rain["1h"] || 0 : 0;
-    const soilMoisture = 75; // Assuming static soil moisture for now
-    const state = weatherData.weather
+    const soilMoisture = 75; // Static value for now
+    const state = weatherData.weather;
 
     const conditions = checkWeatherConditions({
       temp,
@@ -84,6 +97,7 @@ app.post("/weather", async (req, res) => {
         rainfall,
       },
       state,
+      forecast: forecastData, // Send forecast data to frontend
     });
   } catch (error) {
     res.status(500).send("Error fetching weather data");

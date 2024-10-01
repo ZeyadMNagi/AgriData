@@ -1,3 +1,7 @@
+const weatherResult = document.getElementById("weather-result");
+const todayWeather = document.getElementById("today");
+const weekWeather = document.getElementById("week");
+const graphs = document.getElementById("graphs");
 const GEONAMES_USERNAME = "zeyad_m_nagi";
 
 function selectCity(name, lat, lon) {
@@ -47,26 +51,25 @@ async function fetchWeatherData(lat, lon, city = "") {
 
     const data = await response.json();
     displayWeatherData(data);
+    console.log(data);
   } catch (error) {
+    console.error(error);
     alert("Failed to fetch weather data");
   }
 }
 
 // Display weather data
 function displayWeatherData(data) {
-  const weatherResult = document.getElementById("weather-result");
+  weatherResult.style.display = "block";
   document.getElementById("city-input").value = "";
   location.href = "#weather-result";
-  weatherResult.innerHTML = `
+  todayWeather.innerHTML = `
           <h3>Weather in ${data.location.city}</h3>
           <p>Temperature: ${data.currentWeather.temp}°C</p>
           <p>Humidity: ${data.currentWeather.humidity}%</p>
           <p>Rainfall: ${data.currentWeather.rainfall} mm</p>
-          <h4>Detected Conditions</h4>
-          <p>Flood: ${data.conditions.flood ? "Yes" : "No"}</p>
-          <p>Drought: ${data.conditions.drought ? "Yes" : "No"}</p>
-          <p>Heatwave: ${data.conditions.heatwave ? "Yes" : "No"}</p>
       `;
+  plotForecast(data.forecast);
 
   console.log(data);
 }
@@ -111,4 +114,140 @@ function showError(error) {
       alert("An unknown error occurred.");
       break;
   }
+}
+
+function plotForecast(forecast) {
+  const forecastTime = [];
+  const forecastTemps = [];
+  const forecastHumidity = [];
+  const forecastRainfall = [];
+
+  forecast.list.forEach((item) => {
+    const date = new Date(item.dt * 1000);
+    forecastTime.push(date.toLocaleString()); // Format date
+    forecastTemps.push(item.main.temp);
+    forecastHumidity.push(item.main.humidity);
+    forecastRainfall.push(item.rain ? item.rain["3h"] || 0 : 0);
+  });
+
+  // Plot temperature graph
+  const ctxTemp = document.getElementById("tempChart").getContext("2d");
+  new Chart(ctxTemp, {
+    type: "line",
+    data: {
+      labels: forecastTime,
+      datasets: [
+        {
+          label: "Temperature (°C)",
+          data: forecastTemps,
+          borderColor: "rgb(255, 99, 132)",
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: "Temperature Forecast (5 Days)",
+      },
+      scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: "Date/Time",
+          },
+        },
+        y: {
+          display: true,
+          title: {
+            display: true,
+            text: "Temperature (°C)",
+          },
+        },
+      },
+    },
+  });
+
+  // Plot humidity graph
+  const ctxHumidity = document.getElementById("humidityChart").getContext("2d");
+  new Chart(ctxHumidity, {
+    type: "line",
+    data: {
+      labels: forecastTime,
+      datasets: [
+        {
+          label: "Humidity (%)",
+          data: forecastHumidity,
+          borderColor: "rgb(54, 162, 235)",
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: "Humidity Forecast (5 Days)",
+      },
+      scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: "Date/Time",
+          },
+        },
+        y: {
+          display: true,
+          title: {
+            display: true,
+            text: "Humidity (%)",
+          },
+        },
+      },
+    },
+  });
+
+  // Plot rainfall graph
+  const ctxRainfall = document.getElementById("rainfallChart").getContext("2d");
+  new Chart(ctxRainfall, {
+    type: "bar",
+    data: {
+      labels: forecastTime,
+      datasets: [
+        {
+          label: "Rainfall (mm)",
+          data: forecastRainfall,
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: "Rainfall Forecast (5 Days)",
+      },
+      scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: "Date/Time",
+          },
+        },
+        y: {
+          display: true,
+          title: {
+            display: true,
+            text: "Rainfall (mm)",
+          },
+        },
+      },
+    },
+  });
 }

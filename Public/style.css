@@ -223,3 +223,8 @@ button {
   color: #1cabe2;
   font-size: 30px;
 }
+
+
+#weather-result{
+  display: none;
+}
