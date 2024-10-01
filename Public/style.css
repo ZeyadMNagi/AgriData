@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth !important;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -8,10 +12,12 @@
   width: 100%;
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 p {
   color: #353535;
+  margin: 5px 0;
 }
 
 .btn {
@@ -46,6 +52,7 @@ header {
   border-radius: 0px 0px 12px 12px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 8px 0px;
   background: #ffffff;
+  z-index: 999999;
   nav {
     display: flex;
     align-items: center;
@@ -123,4 +130,67 @@ section {
     margin: 15px 0;
     text-align: center;
   }
+}
+
+.img-graph {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  img {
+    max-width: 50%;
+  }
+}
+
+#team {
+  background: #0099cc;
+}
+
+.swiper-container {
+  width: 100%;
+  position: relative;
+}
+
+.swiper-slide {
+    background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.member-avatar {
+  width: 100%;
+  border-radius: 10px;
+}
+
+h3 {
+  margin: 10px 0;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff !important;
+  width: 40px !important;
+  height: 40px !important;
+  top: 50% !important;
+  position: absolute;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.swiper-button-next {
+  right: 10px !important;
+}
+
+.swiper-button-prev {
+  left: 10px !important;
+}
+
+.swiper-pagination {
+  position: relative;
 }
