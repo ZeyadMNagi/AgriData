@@ -55,6 +55,8 @@ async function fetchWeatherData(lat, lon, city = "") {
 // Display weather data
 function displayWeatherData(data) {
   const weatherResult = document.getElementById("weather-result");
+  document.getElementById("city-input").value = "";
+  location.href = "#weather-result";
   weatherResult.innerHTML = `
           <h3>Weather in ${data.location.city}</h3>
           <p>Temperature: ${data.currentWeather.temp}°C</p>

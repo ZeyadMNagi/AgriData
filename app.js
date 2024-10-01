@@ -56,11 +56,13 @@ app.post("/weather", async (req, res) => {
     );
 
     const weatherData = weatherResponse.data;
+    console.log(weatherData);
 
     const temp = weatherData.main.temp;
     const humidity = weatherData.main.humidity;
     const rainfall = weatherData.rain ? weatherData.rain["1h"] || 0 : 0;
     const soilMoisture = 75; // Assuming static soil moisture for now
+    const state = weatherData.weather
 
     const conditions = checkWeatherConditions({
       temp,
@@ -81,6 +83,7 @@ app.post("/weather", async (req, res) => {
         humidity,
         rainfall,
       },
+      state,
     });
   } catch (error) {
     res.status(500).send("Error fetching weather data");
