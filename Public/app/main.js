@@ -36,6 +36,9 @@ async function fetchCitySuggestions(query) {
 }
 
 async function fetchWeatherData(lat, lon, city = "") {
+  document.getElementById("loadingIndicator").style.display = "block";
+  document.getElementById("errorMessage").textContent = "";
+
   try {
     const response = await fetch("/weather", {
       method: "POST",
@@ -49,12 +52,19 @@ async function fetchWeatherData(lat, lon, city = "") {
       }),
     });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const data = await response.json();
     displayWeatherData(data);
     console.log(data);
   } catch (error) {
     console.error(error);
-    alert("Failed to fetch weather data");
+    document.getElementById("errorMessage").textContent =
+      "Failed to fetch weather data. Please try again.";
+  } finally {
+    document.getElementById("loadingIndicator").style.display = "none";
   }
 }
 
@@ -63,15 +73,58 @@ function displayWeatherData(data) {
   weatherResult.style.display = "block";
   document.getElementById("city-input").value = "";
   location.href = "#weather-result";
+  document.querySelector(".form").style.display = "none";
   todayWeather.innerHTML = `
           <h3>Weather in ${data.location.city}</h3>
           <p>Temperature: ${data.currentWeather.temp}°C</p>
           <p>Humidity: ${data.currentWeather.humidity}%</p>
           <p>Rainfall: ${data.currentWeather.rainfall} mm</p>
       `;
-  plotForecast(data.forecast);
 
+  plotForecast(data.forecast);
+  makePredictions(data.forecast);
   console.log(data);
+}
+
+function makePredictions(forecast) {
+  const floodThreshold = 50;
+  const droughtThreshold = 10;
+  const heatWaveThreshold = 35;
+  let floodWarning = false;
+  let droughtWarning = false;
+  let heatWaveWarning = false;
+
+  forecast.list.forEach((item) => {
+    const rain = item.rain ? item.rain["3h"] || 0 : 0;
+    const temp = item.main.temp;
+
+    if (rain > floodThreshold) {
+      floodWarning = true;
+    }
+
+    if (rain < droughtThreshold) {
+      droughtWarning = true;
+    }
+
+    if (temp > heatWaveThreshold) {
+      heatWaveWarning = true;
+    }
+  });
+
+  let warningMessage = "Weather Alerts: ";
+  if (floodWarning) {
+    warningMessage += "Possible Flooding. ";
+  }
+  if (droughtWarning) {
+    warningMessage += "Possible Drought Conditions. ";
+  }
+  if (heatWaveWarning) {
+    warningMessage += "Heat Wave Alert!";
+  }
+
+  const warningDiv = document.createElement("div");
+  warningDiv.innerHTML = `<p>${warningMessage}</p>`;
+  weatherResult.appendChild(warningDiv);
 }
 
 document
@@ -149,7 +202,7 @@ function plotForecast(forecast) {
       responsive: true,
       title: {
         display: true,
-        text: "Temperature Forecast (5 Days)",
+        text: "Temperature Forecast (16 Days)",
       },
       scales: {
         x: {
@@ -189,7 +242,7 @@ function plotForecast(forecast) {
       responsive: true,
       title: {
         display: true,
-        text: "Humidity Forecast (5 Days)",
+        text: "Humidity Forecast (16 Days)",
       },
       scales: {
         x: {
@@ -230,7 +283,7 @@ function plotForecast(forecast) {
       responsive: true,
       title: {
         display: true,
-        text: "Rainfall Forecast (5 Days)",
+        text: "Rainfall Forecast (16 Days)",
       },
       scales: {
         x: {

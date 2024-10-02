@@ -56,7 +56,7 @@ app.post("/weather", async (req, res) => {
     );
 
     // Fetch the 5-day forecast
-    const forecastResponse = await axios.get(
+    const forecast5DaysResponse = await axios.get(
       "https://api.openweathermap.org/data/2.5/forecast",
       {
         params: {
@@ -68,8 +68,15 @@ app.post("/weather", async (req, res) => {
       }
     );
 
+    const forecast16DaysResponse = await axios.get(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,relative_humidity_2m,precipitation,soil_temperature_6cm,soil_moisture_3_to_9cm&timezone=Africa%2FCairo&forecast_days=16`
+    );
+
     const weatherData = weatherResponse.data;
-    const forecastData = forecastResponse.data;
+    const forecast5DaysData = forecast5DaysResponse.data;
+    const forecast16DaysData = forecast16DaysResponse.data;
+
+    // Extract relevant weather data
 
     const temp = weatherData.main.temp;
     const humidity = weatherData.main.humidity;
@@ -97,7 +104,7 @@ app.post("/weather", async (req, res) => {
         rainfall,
       },
       state,
-      forecast: forecastData, // Send forecast data to frontend
+      forecast: forecast5DaysData, // Send forecast data to frontend
     });
   } catch (error) {
     res.status(500).send("Error fetching weather data");
