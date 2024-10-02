@@ -235,16 +235,15 @@ button {
 }
 
 #contactSection {
-  padding: 0 100px 100px ;
+  padding: 0 100px 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  #contactForm{
+  #contactForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 }
-
