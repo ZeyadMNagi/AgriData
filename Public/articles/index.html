@@ -5,6 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style.css" />
     <title>Article</title>
+    <style>
+      .articles {
+        width: 80%;
+        margin: auto;
+        text-align: left;
+        padding: 0 0 150px 0;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        padding: 200px 100px 0;
+      }
+
+      .button {
+        padding: 10px 20px;
+        margin: 0 5px;
+        border: none;
+        background-color: #1cabe2;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+      }
+
+      .button:hover {
+        background-color: #17a2b8;
+      }
+
+      section {
+        display: none;
+      }
+
+      section.active {
+        display: block;
+        padding: 0 100px;
+      }
+
+      img {
+        width: 100%;
+      }
+      @media (max-width: 768px) {
+        .buttons {
+          flex-direction: column;
+          padding: 20px 0;
+        }
+
+        .button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -15,7 +69,6 @@
             <a href="./app/index.html">Application</a>
             <a href="#about">About</a>
             <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
             <a id="lan" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -26,14 +79,378 @@
               >
                 <path
                   d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z"
-                /></svg
-            ></a>
+                />
+              </svg>
+            </a>
           </div>
         </nav>
       </header>
-      <section>
+      <div class="buttons">
+        <button class="button" onclick="showArticle('floods')">Floods</button>
+        <button class="button" onclick="showArticle('heatwaves')">
+          Heat Waves
+        </button>
+        <button class="button" onclick="showArticle('drought')">Drought</button>
+      </div>
+      <div class="articles">
+        <section id="floods" class="active">
+          <h2>Understanding Floods</h2>
+          <img
+            src="https://storage.googleapis.com/afs-prod/media/1c679b89cdfe4ed6b3dd7b213faad68c/3000.jpeg"
+            alt="Floods in farming land"
+          />
+          <h3>Introduction</h3>
+          <p>
+            Floods are an overflow of water onto land that is typically dry.
+            They can occur due to various factors, including heavy rainfall,
+            rapid snowmelt, storm surges, and dam failures. The effects of
+            floods can be catastrophic, leading to significant damage to
+            infrastructure, homes, and agricultural land. In addition to
+            physical destruction, floods can disrupt communities, economies, and
+            ecosystems, creating long-lasting challenges for recovery.
+          </p>
 
-      </section>
+          <h3>Causes of Floods</h3>
+          <ul>
+            <li>
+              <strong>Heavy Rainfall</strong>: Intense or prolonged rainfall can
+              overwhelm drainage systems and rivers, leading to widespread
+              flooding. Urban areas with insufficient drainage are especially
+              vulnerable.
+            </li>
+            <li>
+              <strong>Rapid Snowmelt</strong>: In spring, warming temperatures
+              can cause rapid snowmelt, leading rivers to overflow, especially
+              if there’s a sudden rise in temperatures following a cold winter.
+            </li>
+            <li>
+              <strong>Storm Surges</strong>: Coastal regions may experience
+              flooding due to storm surges during hurricanes or typhoons, where
+              seawater is pushed inland, often exacerbating flood conditions.
+            </li>
+            <li>
+              <strong>Dams and Levees Failure</strong>: Structural failures in
+              dams or levees can result in catastrophic flooding downstream,
+              impacting communities and agriculture reliant on stable water
+              levels.
+            </li>
+          </ul>
+
+          <h3>Impacts of Floods</h3>
+          <p>
+            The impacts of flooding extend beyond immediate damage. They can
+            disrupt local economies, public health, and the environment. Some of
+            the critical effects include:
+          </p>
+          <ul>
+            <li>
+              <strong>Property Damage</strong>: Homes, businesses, and
+              infrastructure can suffer extensive damage, resulting in costly
+              repairs and potential long-term financial hardship for affected
+              families and businesses.
+            </li>
+            <li>
+              <strong>Health Risks</strong>: Floodwaters can carry contaminants,
+              posing health risks including waterborne diseases, mold growth,
+              and injuries from debris.
+            </li>
+            <li>
+              <strong>Agricultural Losses</strong>: Flooding can destroy or
+              contaminate crops, leading to food shortages and economic losses
+              for farmers, who may face prolonged recovery periods.
+            </li>
+            <li>
+              <strong>Displacement</strong>: Floods can force residents to
+              evacuate, leading to temporary or permanent displacement and
+              significant social upheaval.
+            </li>
+          </ul>
+
+          <h3>Flood Management Strategies</h3>
+          <p>
+            Effective flood management is crucial for reducing risks and
+            mitigating impacts on communities and agriculture. Here are some
+            strategies:
+          </p>
+          <ul>
+            <li>
+              <strong>Early Warning Systems</strong>: Implementing advanced
+              forecasting systems can provide timely alerts to communities at
+              risk, allowing them to prepare and evacuate if necessary.
+            </li>
+            <li>
+              <strong>Floodplain Zoning</strong>: Establishing land-use
+              regulations in flood-prone areas can help minimize risks and
+              reduce the number of structures exposed to flooding.
+            </li>
+            <li>
+              <strong>Infrastructure Improvements</strong>: Investing in
+              improved drainage systems, levees, and flood barriers can enhance
+              resilience against flooding, particularly in vulnerable areas.
+            </li>
+            <li>
+              <strong>Community Preparedness</strong>: Educating communities
+              about flood risks and encouraging emergency preparedness can save
+              lives. Community drills and informational campaigns can foster a
+              culture of readiness.
+            </li>
+            <li>
+              <strong>Natural Ecosystem Restoration</strong>: Preserving
+              wetlands and restoring natural buffers can absorb floodwaters,
+              reduce runoff, and enhance biodiversity, providing essential
+              ecosystem services.
+            </li>
+          </ul>
+
+          <h3>Protecting Farmland</h3>
+          <p>
+            Farmers can take proactive measures to protect their land and crops
+            from flooding. Here are some strategies they can implement:
+          </p>
+          <ul>
+            <li>
+              <strong>Contour Farming</strong>: Implementing contour farming
+              practices can help reduce soil erosion and water runoff, allowing
+              water to be absorbed into the ground instead of flowing over it.
+            </li>
+            <li>
+              <strong>Creating Buffer Zones</strong>: Establishing buffer strips
+              with native vegetation along waterways can slow down water flow
+              and absorb excess water, protecting fields from direct flooding.
+            </li>
+            <li>
+              <strong>Water Management Systems</strong>: Developing efficient
+              irrigation and drainage systems can help manage excess water and
+              prevent crop loss during flood events.
+            </li>
+            <li>
+              <strong>Crop Rotation and Diversification</strong>: Planting
+              diverse crops can enhance soil health and resilience, making
+              farmland less susceptible to flood damage.
+            </li>
+          </ul>
+
+          <h3>Conclusion</h3>
+          <p>
+            Floods are a significant natural hazard that can have devastating
+            effects on communities and ecosystems. Understanding their causes
+            and implementing effective management strategies are crucial for
+            reducing risks and enhancing resilience. For farmers, adopting
+            proactive measures to protect their land and crops is essential for
+            sustaining agricultural productivity and safeguarding livelihoods.
+          </p>
+        </section>
+
+        <hr />
+
+        <section id="heatwaves">
+          <h2>Protecting Crops from Heat</h2>
+          <img
+            src="https://gdb.voanews.com/02d10000-0aff-0242-f2b8-08da2c5cfee3_w1200_r1.jpg"
+            alt="India’s Heat Wave Affects Wheat Crop"
+          />
+          <h3>Introduction</h3>
+          <p>
+            Heat waves are prolonged periods of excessively hot weather that can
+            pose significant threats to agricultural productivity. Increased
+            temperatures can lead to crop stress, reduced yields, and even crop
+            failures. As the climate continues to change, understanding how to
+            protect crops from these extreme conditions is vital for farmers. In
+            this article, we will explore effective strategies for mitigating
+            the effects of heat waves on agricultural outputs.
+          </p>
+
+          <h3>Causes of Heat Waves</h3>
+          <p>
+            Heat waves can be caused by a combination of meteorological factors,
+            including:
+          </p>
+          <ul>
+            <li>
+              <strong>High-Pressure Systems</strong>: Stagnant high-pressure
+              systems can trap heat in an area, leading to prolonged periods of
+              hot weather that can severely impact crops.
+            </li>
+            <li>
+              <strong>Climate Change</strong>: Rising global temperatures due to
+              climate change can increase the frequency and intensity of heat
+              waves, stressing agricultural systems.
+            </li>
+            <li>
+              <strong>Land Use Changes</strong>: Urbanization and deforestation
+              can contribute to the urban heat island effect, raising
+              temperatures in cities and surrounding agricultural areas.
+            </li>
+          </ul>
+
+          <h3>Protective Measures for Farmers</h3>
+          <p>
+            Farmers can implement several strategies to safeguard their crops
+            during heat waves:
+          </p>
+          <ul>
+            <li>
+              <strong>Soil Moisture Management</strong>: Maintaining adequate
+              soil moisture through efficient irrigation and mulching helps
+              prevent drought stress. Cover crops can also improve soil
+              structure and retain moisture.
+            </li>
+            <li>
+              <strong>Crop Selection</strong>: Choosing heat-resistant crop
+              varieties can improve resilience to high temperatures and ensure
+              higher yields during extreme heat events.
+            </li>
+            <li>
+              <strong>Shading Techniques</strong>: Implementing shading
+              structures or planting cover crops can significantly reduce heat
+              stress on sensitive crops, enhancing growth conditions.
+            </li>
+            <li>
+              <strong>Water Conservation Practices</strong>: Efficient
+              irrigation methods, such as drip irrigation, can conserve water
+              and minimize evaporation losses, ensuring crops have sufficient
+              moisture during heat waves.
+            </li>
+            <li>
+              <strong>Weather Monitoring</strong>: Using weather forecasting
+              tools can help farmers anticipate heat waves and take preventive
+              actions, such as adjusting irrigation schedules or implementing
+              cooling measures.
+            </li>
+          </ul>
+
+          <h3>Conclusion</h3>
+          <p>
+            As climate change continues to affect weather patterns, farmers must
+            adopt effective strategies to mitigate the impacts of heat waves on
+            their crops. By implementing proactive measures, they can safeguard
+            their harvests, ensure food security, and contribute to sustainable
+            agricultural practices.
+          </p>
+        </section>
+
+        <hr />
+
+        <section id="drought">
+          <h2>Protecting Crops from Drought</h2>
+          <img
+            src="https://th.bing.com/th/id/R.f467e7b92ad98922ef48764b6b5d6024?rik=WG9YZigiv4Sl9Q&pid=ImgRaw&r=0"
+            alt="drought in a farming land"
+          />
+
+          <h3>Introduction</h3>
+          <p>
+            Drought is a prolonged dry period characterized by a deficiency in
+            precipitation, leading to water shortages and adverse impacts on
+            agriculture. As climate change increases the frequency of droughts,
+            it becomes crucial for farmers to adopt effective strategies to
+            protect their crops and ensure sustainable agricultural practices.
+            This article explores the causes of drought and protective measures
+            farmers can take to mitigate its impacts.
+          </p>
+
+          <h3>Causes of Drought</h3>
+          <p>
+            Drought can result from various natural and human-induced factors,
+            including:
+          </p>
+          <ul>
+            <li>
+              <strong>Climate Variability</strong>: Changes in climate patterns
+              can lead to reduced rainfall and increased temperatures,
+              exacerbating drought conditions.
+            </li>
+            <li>
+              <strong>Overexploitation of Water Resources</strong>:
+              Unsustainable water use practices, such as excessive irrigation or
+              groundwater extraction, can deplete water sources and contribute
+              to drought.
+            </li>
+            <li>
+              <strong>Deforestation</strong>: The loss of forests can disrupt
+              local water cycles, leading to decreased rainfall and higher
+              temperatures, further contributing to drought conditions.
+            </li>
+          </ul>
+
+          <h3>Protective Measures for Farmers</h3>
+          <p>
+            Farmers can implement several strategies to safeguard their crops
+            during drought conditions:
+          </p>
+          <ul>
+            <li>
+              <strong>Drought-Resistant Crop Varieties</strong>: Selecting crops
+              that are naturally drought-resistant can enhance resilience and
+              ensure higher yields during dry spells.
+            </li>
+            <li>
+              <strong>Soil Conservation Practices</strong>: Implementing
+              techniques such as no-till farming and cover cropping can improve
+              soil health, enhance moisture retention, and reduce erosion.
+            </li>
+            <li>
+              <strong>Water Management Strategies</strong>: Utilizing efficient
+              irrigation methods, such as drip irrigation, can minimize water
+              loss and ensure that crops receive adequate moisture.
+            </li>
+            <li>
+              <strong>Rainwater Harvesting</strong>: Capturing and storing
+              rainwater can provide an alternative water source for irrigation,
+              helping farmers manage water scarcity during dry periods.
+            </li>
+            <li>
+              <strong>Crop Rotation</strong>: Practicing crop rotation can
+              improve soil health and reduce dependency on a single crop,
+              enhancing resilience to drought conditions.
+            </li>
+          </ul>
+
+          <h3>Conclusion</h3>
+          <p>
+            Drought poses significant challenges to agricultural productivity
+            and food security. By implementing effective protective measures,
+            farmers can enhance the resilience of their crops, safeguard their
+            livelihoods, and contribute to sustainable agricultural practices in
+            the face of climate change.
+          </p>
+        </section>
+
+        <hr />
+
+        <h3>Resources</h3>
+        <ul>
+          <li>
+            <a href="https://www.fema.gov"
+              >FEMA: Flood Insurance and Preparedness</a
+            >: Offers resources on flood insurance, preparedness, and recovery.
+          </li>
+          <li>
+            <a href="https://www.noaa.gov"
+              >NOAA: National Oceanic and Atmospheric Administration</a
+            >: Provides information on weather-related hazards, including
+            floods.
+          </li>
+          <li>
+            <a href="https://www.usgs.gov">USGS: U.S. Geological Survey</a>:
+            Offers data and information on water resources and flood monitoring.
+          </li>
+          <li>
+            <a href="https://www.redcross.org">American Red Cross</a>: Provides
+            disaster preparedness resources and recovery assistance.
+          </li>
+        </ul>
+      </div>
     </div>
+
+    <script>
+      function showArticle(articleId) {
+        const sections = document.querySelectorAll("section");
+        sections.forEach((section) => section.classList.remove("active"));
+
+        const activeSection = document.getElementById(articleId);
+        activeSection.classList.add("active");
+      }
+    </script>
   </body>
 </html>
