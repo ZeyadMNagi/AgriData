@@ -4,6 +4,8 @@ const weekWeather = document.getElementById("week");
 const graphs = document.getElementById("graphs");
 const GEONAMES_USERNAME = "zeyad_m_nagi";
 
+var isEnglish = true;
+
 function selectCity(name, lat, lon) {
   document.getElementById("city-input").value = name;
   document.getElementById("latitude").value = lat;
@@ -304,3 +306,4 @@ function plotForecast(forecast) {
     },
   });
 }
+

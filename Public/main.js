@@ -1,10 +1,10 @@
 const swiper = new Swiper(".swiper-container", {
-  loop: true, 
-  slidesPerView: 3, 
-  slidesPerGroup: 1, 
-  spaceBetween: 20, 
+  loop: true,
+  slidesPerView: 3,
+  slidesPerGroup: 1,
+  spaceBetween: 20,
   autoplay: {
-    delay: 3000, 
+    delay: 3000,
     disableOnInteraction: false,
   },
   pagination: {

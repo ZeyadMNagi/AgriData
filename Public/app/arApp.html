@@ -1,21 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style.css" />
-    <title>AgriDATA hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        direction: rtl;
+        font-family: "Cairo", sans-serif;
+      }
+    </style>
+    <title>مركز AgriDATA</title>
   </head>
-  <body>
+  <body dir="rtl">
     <div class="container">
       <header>
         <nav>
-          <a class="logo" href="../index.html#home">AgriDATA hub</a>
+          <a class="logo" href="../index.html#home">مركز AgriDATA</a>
           <div class="menu">
-            <a href="../index.html">Home</a>
-            <a href="../index.html#about">About</a>
-            <a href="../index.html#team">Team</a>
-            <a href="../index.html#contact">Contact</a>
+            <a href="../index.html">الرئيسية</a>
+            <a href="../index.html#about">عن المركز</a>
+            <a href="../index.html#team">فريق العمل</a>
+            <a href="../index.html#contact">اتصل بنا</a>
             <a id="lan" href="./arApp.html">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -33,14 +44,14 @@
         </nav>
       </header>
       <section class="form">
-        <h2 class="logg">AgriDATA hub</h2>
+        <h2 class="logg">مركز AgriDATA</h2>
         <br /><br />
         <div class="input">
-          <label for="city-input">City name:</label>
+          <label for="city-input">اسم المدينة:</label>
           <input
             type="text"
             id="city-input"
-            placeholder="Enter your city"
+            placeholder="أدخل اسم مدينتك"
             oninput="fetchCitySuggestions(this.value)"
           />
           <span id="getLocationBtn">
@@ -58,26 +69,26 @@
           </span>
         </div>
         <br />
-        <div>Select from the suggestions:</div>
+        <div>اختر من الاقتراحات:</div>
         <ul id="suggestions"></ul>
         <br /><br />
         <div id="locationDisplay"></div>
-        <div id="loadingIndicator" style="display: none">Loading...</div>
+        <div id="loadingIndicator" style="display: none">جاري التحميل...</div>
         <div id="errorMessage" style="color: red"></div>
-        <div class="btn" onclick="fetchWeatherData()">Get Weather</div>
+        <div class="btn" onclick="fetchWeatherData()">احصل على الطقس</div>
       </section>
       <input type="hidden" id="latitude" />
       <input type="hidden" id="longitude" />
       <section id="weather-result">
-        <h3>Today's Weather:</h3>
+        <h3>طقس اليوم:</h3>
         <div id="today"></div>
-        <h3>Over week Weather:</h3>
+        <h3>طقس الأسبوع:</h3>
         <div id="week"></div>
-        <h3>Forecast (5 Days)</h3>
+        <h3>التوقعات (5 أيام)</h3>
         <canvas id="tempChart" width="400" height="200"></canvas>
         <canvas id="humidityChart" width="400" height="200"></canvas>
         <canvas id="rainfallChart" width="400" height="200"></canvas>
-        <h3>Precipitation</h3>
+        <h3>الهطول</h3>
         <div id="precipitation"></div>
       </section>
     </div>

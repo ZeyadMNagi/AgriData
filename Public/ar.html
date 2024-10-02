@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,8 +8,18 @@
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <title>AgriDATA hub</title>
+    <title>AgriDATA hub - تبديل اللغة</title>
+    <style>
+      body {
+        direction: rtl;
+        font-family: "Cairo", sans-serif;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -17,11 +27,11 @@
         <nav>
           <a class="logo" href="#home">AgriDATA hub</a>
           <div class="menu">
-            <a href="./app/index.html">Application</a>
-            <a href="#about">About</a>
-            <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
-            <a id="lan" href="./ar.html">
+            <a href="./app/index.html">التطبيق</a>
+            <a href="#about">عن المشروع</a>
+            <a href="#team">الفريق</a>
+            <a href="#contact">اتصل بنا</a>
+            <a id="lan" href="./index.html#home">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
@@ -39,109 +49,106 @@
       </header>
       <section id="home">
         <div class="con">
-          <h2 id="welcome">Welcome to,<br /><span> AgriDATA hub</span></h2>
+          <h2 id="welcome">مرحبًا بكم في,<br /><span> AgriDATA hub</span></h2>
           <br />
-          <p id="tagline">**For better Agriculture**</p>
+          <p id="tagline">**لتحسين الزراعة**</p>
           <br />
           <div class="btn">
-            <a href="./app/index.html">Get Started</a>
+            <a href="./app/index.html">ابدأ الآن</a>
           </div>
         </div>
       </section>
       <section id="about">
-        <h3 id="about-title">About Our Project</h3>
+        <h3 id="about-title">عن مشروعنا</h3>
         <p id="about-content">
-          Our primary goal is to support farmers in safeguarding their
-          agricultural fields and crops from potential harm.
-          <br />
-          To achieve this, we have developed an innovative application that
-          harnesses NASA's datasets to anticipate and notify farmers about
-          upcoming floods, heat waves, and other potential disasters that could
-          have an adverse impact on agriculture.
+          هدفنا الرئيسي هو دعم المزارعين في حماية أراضيهم الزراعية والمحاصيل من
+          الأضرار المحتملة.<br />
+          لتحقيق ذلك، طورنا تطبيقًا مبتكرًا يستفيد من بيانات ناسا للتنبؤ وإبلاغ
+          المزارعين عن الفيضانات المقبلة، وموجات الحرارة، وغيرها من الكوارث
+          المحتملة التي يمكن أن تؤثر سلبًا على الزراعة.
         </p>
         <br /><br />
         <div class="img-graph">
           <img
             src="https://riskfrontiers.com/wp-content/uploads/2022/04/Figure-4_465-1024x609.png"
-            alt="Chart for no. of death due to rain floods in Australia"
+            alt="الرسم البياني لعدد الوفيات بسبب الفيضانات في أستراليا"
           />
           <p>
-            Age range of victims of floods in Australia, FY2011-FY2022 [SOURCE:
-            PerilAUS]
+            الفئة العمرية لضحايا الفيضانات في أستراليا، من السنة المالية 2011
+            إلى 2022 [المصدر: PerilAUS]
           </p>
           <a
             href="https://riskfrontiers.com/insights/flood-rain-events-decade-2011-2022/"
-            >Source</a
+            >المصدر</a
           >
         </div>
         <br /><br />
-        <h3 id="challenge-title">About Our Challenge</h3>
+        <h3 id="challenge-title">عن تحدينا</h3>
         <p id="challenge-content">
-          We are a team working on the challenge of leveraging Earth Observation
-          Data for informed agricultural decision-making. <br />
-          Our diverse skill set includes expertise in climate science, coding,
-          data analysis, hardware, public speaking, software development, and
-          web development. <br />
-          We communicate in both Arabic and English, ensuring effective
-          collaboration and outreach.
+          نحن فريق يعمل على تحدي استخدام بيانات مراقبة الأرض من أجل اتخاذ قرارات
+          زراعية مستنيرة.<br />
+          تتضمن مجموعة مهاراتنا المتنوعة خبرة في علوم المناخ، البرمجة، تحليل
+          البيانات، الأجهزة، التحدث العام، تطوير البرمجيات، وتطوير الويب.<br />
+          نتحدث باللغتين العربية والإنجليزية، مما يضمن التعاون والتواصل الفعال.
         </p>
       </section>
       <section id="team">
+        <h3>أعضاء الفريق</h3>
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <img
                 src="avatar.23:03:09.670302"
-                alt="Youssef Zahran"
+                alt="يوسف زهران"
                 class="member-avatar"
               />
-              <h3>Youssef Zahran</h3>
-              <p><strong>Role:</strong> Business</p>
+              <h3>يوسف زهران</h3>
+              <p><strong>الدور:</strong> الأعمال</p>
             </div>
             <div class="swiper-slide">
               <img
                 src="./assets/team/Mohammed.jpg"
-                alt="Mohamed Elsaid"
+                alt="محمد السيد"
                 class="member-avatar"
               />
-              <h3>Mohamed Elsaid</h3>
-              <p><strong>Role:</strong> hardware engineer</p>
+              <h3>محمد السيد</h3>
+              <p><strong>الدور:</strong> مهندس الأجهزة</p>
             </div>
             <div class="swiper-slide">
               <img
                 src="./assets/team/Zeyad.jpg"
-                alt="Zeyad Mohammed Nagi"
+                alt="زيد محمد ناجي"
                 class="member-avatar"
               />
-              <h3>Zeyad Mohammed Nagi</h3>
-              <p><strong>Role:</strong> Web Developer</p>
+              <h3>زيد محمد ناجي</h3>
+              <p><strong>الدور:</strong> مطور ويب</p>
             </div>
             <div class="swiper-slide">
               <img
                 src="./assets/team/Mazen.jpg"
-                alt="Mazen El-Basyoni"
+                alt="مازن البسيوني"
                 class="member-avatar"
               />
-              <h3>Mazen El-Basyoni</h3>
-              <p><strong>Role:</strong> Researcher</p>
+              <h3>مازن البسيوني</h3>
+              <p><strong>الدور:</strong> باحث</p>
             </div>
             <div class="swiper-slide">
               <img
                 src="avatar.13:51:48.139978"
-                alt="Renada Ahmed"
+                alt="رندة أحمد"
                 class="member-avatar"
               />
-              <h3>Renada Ahmed</h3>
-              <p><strong>Role:</strong> Business</p>
+              <h3>رندة أحمد</h3>
+              <p><strong>الدور:</strong> الأعمال</p>
             </div>
             <div class="swiper-slide">
               <img
                 src="avatar.18:36:32.286154"
-                alt="Renad Waleed"
+                alt="رناد وليد"
                 class="member-avatar"
               />
-              <h3>Renad Waleed</h3>
-              <p><strong>Role:</strong> Business</p>
+              <h3>رناد وليد</h3>
+              <p><strong>الدور:</strong> الأعمال</p>
             </div>
           </div>
           <div class="swiper-pagination"></div>
