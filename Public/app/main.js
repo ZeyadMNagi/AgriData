@@ -3,8 +3,8 @@ const todayWeather = document.getElementById("today");
 const weekWeather = document.getElementById("week");
 const graphs = document.getElementById("graphs");
 const GEONAMES_USERNAME = "zeyad_m_nagi";
+var DATA;
 
-var isEnglish = true;
 
 function selectCity(name, lat, lon) {
   document.getElementById("city-input").value = name;
@@ -86,6 +86,7 @@ function displayWeatherData(data) {
   plotForecast(data.forecast);
   makePredictions(data.forecast);
   console.log(data);
+  DATA = data;
 }
 
 function makePredictions(forecast) {
@@ -124,8 +125,8 @@ function makePredictions(forecast) {
     warningMessage += "Heat Wave Alert!";
   }
 
-  const warningDiv = document.createElement("div");
-  warningDiv.innerHTML = `<p>${warningMessage}</p>`;
+  const warningDiv = document.getElementById("precipitation");
+  warningDiv.innerHTML = `${warningMessage}`;
   weatherResult.appendChild(warningDiv);
 }
 
@@ -307,3 +308,45 @@ function plotForecast(forecast) {
   });
 }
 
+document
+  .getElementById("contactForm")
+  .addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+
+    const forecast = [
+      {
+        dt: Date.now() / 1000,
+        main: { temp: 29 },
+        weather: [{ description: "clear sky" }],
+      },
+    ];
+    console.log(forecast,)
+    let weatherData = DATA;
+
+    try {
+      const response = await fetch("/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          weatherData,
+          forecast,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error sending email");
+      }
+
+      const result = await response.json();
+      console.log("Email sent:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  });

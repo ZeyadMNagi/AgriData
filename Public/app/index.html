@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style.css" />
-    <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon" />
     <title>AgriDATA hub</title>
   </head>
   <body>
@@ -69,6 +69,7 @@
       </section>
       <input type="hidden" id="latitude" />
       <input type="hidden" id="longitude" />
+
       <section id="weather-result">
         <h3>Today's Weather:</h3>
         <div id="today"></div>
@@ -80,6 +81,37 @@
         <canvas id="rainfallChart" width="400" height="200"></canvas>
         <h3>In the Next 3 week this might happen:</h3>
         <div id="precipitation"></div>
+      </section>
+
+      <section class="form" id="contactSection">
+        <h2>Get Data</h2>
+        <form id="contactForm">
+          <div>
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              required
+            />
+          </div>
+          <br />
+          <div>
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+          </div>
+          <br />
+
+          <button type="submit" class="btn">Get the data</button>
+        </form>
+        <div id="formResponse"></div>
       </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

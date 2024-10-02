@@ -227,3 +227,24 @@ button {
 #weather-result {
   display: none;
 }
+
+#precipitation {
+  font-size: 40px;
+  font-weight: bolder;
+  color: #d30606;
+}
+
+#contactSection {
+  padding: 0 100px 100px ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  #contactForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
